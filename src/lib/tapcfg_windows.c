@@ -16,9 +16,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <assert.h>
+#include <ws2tcpip.h>
 #include <windows.h>
 #include <winioctl.h>
-#include <ws2tcpip.h>
 
 #include "tapcfg.h"
 #include "taplog.h"

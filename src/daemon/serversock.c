@@ -19,8 +19,8 @@
 #include <unistd.h>
 
 #if defined(_WIN32) || defined(_WIN64)
-# include <winsock2.h>
 # include <ws2tcpip.h>
+# include <winsock2.h>
 #else
 # include <netinet/in.h>
 # include <sys/types.h>
@@ -53,15 +53,12 @@ serversock_tcp(unsigned short *local_port, int use_ipv6, int public)
 	int ret;
 
 	struct sockaddr *saddr;
-	struct sockaddr *caddr;
-	socklen_t saddr_size, caddr_size;
+	socklen_t saddr_size;
 
 	struct sockaddr_in saddr4;
-	struct sockaddr_in caddr4;
 
 #ifndef DISABLE_IPV6
 	struct sockaddr_in6 saddr6;
-	struct sockaddr_in6 caddr6;
 
 	memset(&saddr6, 0, sizeof(saddr6));
 	saddr6.sin6_family = AF_INET6;
@@ -71,16 +68,12 @@ serversock_tcp(unsigned short *local_port, int use_ipv6, int public)
 	if (use_ipv6) {
 		saddr = (struct sockaddr *) &saddr6;
 		saddr_size = sizeof(saddr6);
-		caddr = (struct sockaddr *) &caddr6;
-		caddr_size = sizeof(caddr6);
 		socket_domain = AF_INET6;
 	} else
 #endif
 	{
 		saddr = (struct sockaddr *) &saddr4;
 		saddr_size = sizeof(saddr4);
-		caddr = (struct sockaddr *) &caddr4;
-		caddr_size = sizeof(caddr4);
 		socket_domain = AF_INET;
 	}
 

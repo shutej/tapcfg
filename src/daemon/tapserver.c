@@ -22,9 +22,9 @@
 #include <stdio.h>
 
 #if defined(_WIN32) || defined(_WIN64)
-#  include <windows.h>
-#  include <winsock2.h>
 #  include <ws2tcpip.h>
+#  include <winsock2.h>
+#  include <windows.h>
 #else
 #  include <netinet/in.h>
 #  include <sys/types.h>
